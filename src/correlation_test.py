@@ -20,3 +20,9 @@ df = df.frame
 df.head()
 corr = df.corr()
 print(corr)
+
+print('subset correlation')
+print(np.corrcoef(df['age'],df['sex']))
+plt.figure()
+sns.heatmap(corr)
+plt.show()
