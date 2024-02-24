@@ -4,9 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+trl = {extras = ["peft"], version = "*"}
 bitsandbytes = "*"
 loralib = "*"
-trl = {extras = ["peft"], version = "*"}
 transformers = {ref = "main", git = "git+https://github.com/huggingface/transformers.git"}
 
 [dev-packages]
