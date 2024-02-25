@@ -26,3 +26,6 @@ print(np.corrcoef(df['age'],df['sex']))
 plt.figure()
 sns.heatmap(corr)
 plt.show()
+
+
+
