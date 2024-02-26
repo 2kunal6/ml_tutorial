@@ -35,10 +35,39 @@ print(r2_score_custom(y, y_pred_3))
 # Ajusted r2 score ------------------------------------------------------------
 
 #Adj_r2 = 1 - (1-r2_score(y, y_pred)) * (len(y)-1)/(len(y)-X.shape[1]-1)
-data = pd.read_csv('data.csv')
-print(data[["x1", "x2"]])
-#fit regression model
-X, y = data[["x1", "x2", "x3", "x4"]], data.y
-result = sm.OLS(y, X).fit()
+def print_rsq_and_rsq_adj(data, y):
+    cols = []
+    for i in range(len(data[0])):
+        cols.append(f'x{str(i)}')
+    df = pd.DataFrame.from_records(data, columns=[cols])
+    print(df)
+    result = sm.OLS(y, df).fit()
 
-print(result.summary())
+    print(result.rsquared)
+    print(result.rsquared_adj)
+
+
+data = [[1, 11, 21, 31],
+        [2, 12, 22, 32],
+        [3, 13, 23, 33],
+        [4, 14, 24, 34],
+        [5, 15, 25, 35],
+        [6, 16, 26, 36],
+        [7, 17, 27, 37],
+        [8, 18, 28, 38],
+        [9, 19, 29, 39],
+        [10, 20, 30, 40]]
+y = [101, 102, 103, 104, 105, 106, 107, 108, 109, 110]
+
+
+print_rsq_and_rsq_adj(data, y)
+
+for i in range(len(data)):
+    data[i].append(10-i)
+
+print_rsq_and_rsq_adj(data, y)
+
+for i in range(len(data)):
+    data[i].append(i)
+
+print_rsq_and_rsq_adj(data, y)
